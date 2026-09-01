@@ -132,8 +132,8 @@
               </label>
             </div>
             <div class="comment-box hidden">
-              <label for="q6Comment">Commentaire et photo</label>
-              <textarea id="q6Comment" name="q6Comment" rows="2" placeholder="Détails et veuillez joindre une photo en pièce jointe..."></textarea>
+              <label for="q6Comment">Commentaire</label>
+              <textarea id="q6Comment" name="q6Comment" rows="2" placeholder="Détails du problème..."></textarea>
             </div>
           </div>
         </section>
@@ -143,16 +143,7 @@
           <textarea id="generalComment" name="generalComment" rows="4" placeholder="Ajoutez des observations générales..."></textarea>
         </div>
 
-        <div class="field-group photo-group">
-          <label>Photo</label>
-          <div class="photo-actions">
-            <input id="photoInput" type="file" accept="image/*" />
-            <button type="button" id="photoButton" class="secondary-button">Choisir une photo</button>
-          </div>
-          <p class="info-text">Sur téléphone, la photo sera ajoutée automatiquement au courriel via le menu de partage.</p>
-          <p id="photoName" class="photo-name">Aucune photo sélectionnée.</p>
-          <p id="sendStatus" class="info-text" role="status" aria-live="polite"></p>
-        </div>
+        <p class="photo-notice">Une fois le mail ouvert, insérer vos photos si vous en avez.</p>
 
         <button type="submit" class="primary-button">Envoyer</button>
       </form>

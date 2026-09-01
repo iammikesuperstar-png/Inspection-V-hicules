@@ -171,21 +171,6 @@ textarea {
   display: none;
 }
 
-.photo-group {
-  margin-top: 6px;
-}
-
-.photo-actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-#photoInput {
-  display: none;
-}
-
 .primary-button,
 .secondary-button {
   border: none;
@@ -215,17 +200,18 @@ textarea {
   transform: translateY(-1px);
 }
 
-.info-text,
-.photo-name {
+.info-text {
   margin: 10px 0 0;
   color: var(--neutral-700);
   font-size: 0.86rem;
   line-height: 1.5;
 }
 
-.photo-name {
+.photo-notice {
+  margin: 0 0 18px;
   font-weight: 600;
-  color: var(--primary-dark);
+  color: var(--danger);
+  text-align: center;
 }
 
 @media (max-width: 420px) {
