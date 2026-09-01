@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Code QR - Inspection de véhicule</title>
-    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
     <style>
       body {
         margin: 0;
@@ -43,9 +42,10 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        min-height: 380px;
       }
 
-      #qrCanvas {
+      .qr-box img {
         display: block;
         width: 100%;
         max-width: 350px;
@@ -71,6 +71,7 @@
 
         .qr-box {
           padding: 15px;
+          min-height: 300px;
         }
       }
 
@@ -93,7 +94,7 @@
       <div class="label">⚠️ OBLIGATOIRE AVANT DÉPART</div>
       
       <div class="qr-box">
-        <canvas id="qrCanvas"></canvas>
+        <img id="qrImage" src="" alt="Code QR d'inspection de véhicule" />
       </div>
 
       <div class="info-text">
@@ -103,28 +104,12 @@
     </div>
 
     <script>
-      const inspectionUrl =
-        'https://raw.githubusercontent.com/iammikesuperstar-png/Inspection-V-hicules/master/index.html';
-
-      // Générer le QR code
-      const canvas = document.getElementById('qrCanvas');
-      QRCode.toCanvas(
-        canvas,
-        inspectionUrl,
-        {
-          width: 350,
-          margin: 1,
-          color: {
-            dark: '#10263d',
-            light: '#ffffff'
-          }
-        },
-        function (error) {
-          if (error) {
-            console.error('Erreur lors de la génération du QR code:', error);
-          }
-        }
-      );
+      const inspectionUrl = 'https://raw.githubusercontent.com/iammikesuperstar-png/Inspection-V-hicules/master/index.html';
+      const qrImage = document.getElementById('qrImage');
+      
+      // Générer le QR code via QR Server API
+      const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=350x350&data=${encodeURIComponent(inspectionUrl)}`;
+      qrImage.src = qrApiUrl;
     </script>
   </body>
 </html>
