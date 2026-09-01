@@ -3,6 +3,7 @@ const inspectionDate = document.getElementById('inspectionDate');
 const photoInput = document.getElementById('photoInput');
 const photoButton = document.getElementById('photoButton');
 const photoName = document.getElementById('photoName');
+const sendStatus = document.getElementById('sendStatus');
 
 const setToday = () => {
   const today = new Date();
@@ -52,7 +53,7 @@ photoInput.addEventListener('change', () => {
 
 setToday();
 
-form.addEventListener('submit', (event) => {
+form.addEventListener('submit', async (event) => {
   event.preventDefault();
 
   if (!form.reportValidity()) {
@@ -94,11 +95,37 @@ form.addEventListener('submit', (event) => {
   if (selectedFile) {
     body.push('');
     body.push(`Photo sélectionnée : ${selectedFile.name}`);
-    body.push('Note : la photo doit être jointe manuellement dans le courriel, car mailto ne permet pas de joindre automatiquement un fichier.');
   }
 
   const subject = `Inspection de véhicule avant départ - Véhicule ${vehicleNumber} - ${inspectionDateValue}`;
-  const mailtoLink = `mailto:michael.fontaine@colasquebec.ca?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body.join('\n'))}`;
+  const message = body.join('\n');
 
+  if (
+    selectedFile &&
+    typeof navigator.share === 'function' &&
+    typeof navigator.canShare === 'function' &&
+    navigator.canShare({ files: [selectedFile] })
+  ) {
+    try {
+      await navigator.share({
+        title: subject,
+        text: `À : michael.fontaine@colasquebec.ca\nObjet : ${subject}\n\n${message}`,
+        files: [selectedFile]
+      });
+      sendStatus.textContent = 'Le menu de partage est ouvert avec la photo jointe.';
+    } catch (error) {
+      if (error.name !== 'AbortError') {
+        sendStatus.textContent = 'Le partage a échoué. Veuillez réessayer ou joindre la photo manuellement.';
+      }
+    }
+    return;
+  }
+
+  if (selectedFile) {
+    body.push('');
+    body.push('La photo doit être jointe manuellement : ce navigateur ne permet pas le partage automatique de fichiers.');
+  }
+
+  const mailtoLink = `mailto:michael.fontaine@colasquebec.ca?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body.join('\n'))}`;
   window.location.href = mailtoLink;
 });
