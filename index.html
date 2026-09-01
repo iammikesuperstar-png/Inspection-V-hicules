@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inspection de véhicule avant départ</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="header">
+        <h1>Inspection de véhicule avant départ</h1>
+      </header>
+
+      <form id="inspectionForm" novalidate>
+        <div class="field-group">
+          <label for="employeeName">Nom employé</label>
+          <input id="employeeName" name="employeeName" type="text" placeholder="Prénom Nom" required />
+        </div>
+
+        <div class="field-group">
+          <label for="vehicleNumber">Numéro véhicule</label>
+          <input id="vehicleNumber" name="vehicleNumber" type="text" placeholder="Ex. 245" required />
+        </div>
+
+        <div class="field-group">
+          <label for="inspectionDate">Date</label>
+          <input id="inspectionDate" name="inspectionDate" type="date" required />
+        </div>
+
+        <section class="questions" aria-label="Questions d'inspection">
+          <div class="question" data-question="1">
+            <p class="question-text">Les pneus sont en bon état (pression et usure) ?</p>
+            <div class="answer-options" role="radiogroup" aria-label="Les pneus sont en bon état">
+              <label class="choice">
+                <input type="radio" name="q1" value="Oui" checked />
+                <span>Oui</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="q1" value="Non" />
+                <span>Non</span>
+              </label>
+            </div>
+            <div class="comment-box hidden">
+              <label for="q1Comment">Commentaire</label>
+              <textarea id="q1Comment" name="q1Comment" rows="2" placeholder="Détails du problème..."></textarea>
+            </div>
+          </div>
+
+          <div class="question" data-question="2">
+            <p class="question-text">Les niveaux de fluides sont suffisants ?</p>
+            <div class="answer-options" role="radiogroup" aria-label="Les niveaux de fluides sont suffisants">
+              <label class="choice">
+                <input type="radio" name="q2" value="Oui" checked />
+                <span>Oui</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="q2" value="Non" />
+                <span>Non</span>
+              </label>
+            </div>
+            <div class="comment-box hidden">
+              <label for="q2Comment">Commentaire</label>
+              <textarea id="q2Comment" name="q2Comment" rows="2" placeholder="Détails du problème..."></textarea>
+            </div>
+          </div>
+
+          <div class="question" data-question="3">
+            <p class="question-text">Avez-vous identifié des dommages extérieurs comparativement à l'inspection précédente ?</p>
+            <div class="answer-options" role="radiogroup" aria-label="Dommages extérieurs identifiés">
+              <label class="choice">
+                <input type="radio" name="q3" value="Oui" checked />
+                <span>Oui</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="q3" value="Non" />
+                <span>Non</span>
+              </label>
+            </div>
+            <div class="comment-box hidden">
+              <label for="q3Comment">Commentaire</label>
+              <textarea id="q3Comment" name="q3Comment" rows="2" placeholder="Détails du problème..."></textarea>
+            </div>
+          </div>
+
+          <div class="question" data-question="4">
+            <p class="question-text">L'éclairage du véhicule et les équipements lumineux de signalisation sont-ils tous fonctionnels ?</p>
+            <div class="answer-options" role="radiogroup" aria-label="Les feux et la signalisation fonctionnent correctement">
+              <label class="choice">
+                <input type="radio" name="q4" value="Oui" checked />
+                <span>Oui</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="q4" value="Non" />
+                <span>Non</span>
+              </label>
+            </div>
+            <div class="comment-box hidden">
+              <label for="q4Comment">Commentaire</label>
+              <textarea id="q4Comment" name="q4Comment" rows="2" placeholder="Détails du problème..."></textarea>
+            </div>
+          </div>
+
+          <div class="question" data-question="5">
+            <p class="question-text">Lors de la prise du véhicule, était-il stationné en marche arrière et à un endroit sécuritaire ?</p>
+            <div class="answer-options" role="radiogroup" aria-label="Stationnement en marche arrière et endroit sécuritaire">
+              <label class="choice">
+                <input type="radio" name="q5" value="Oui" checked />
+                <span>Oui</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="q5" value="Non" />
+                <span>Non</span>
+              </label>
+            </div>
+            <div class="comment-box hidden">
+              <label for="q5Comment">Commentaire</label>
+              <textarea id="q5Comment" name="q5Comment" rows="2" placeholder="Détails du problème..."></textarea>
+            </div>
+          </div>
+
+          <div class="question" data-question="6">
+            <p class="question-text">L'intérieur du véhicule était-il propre à votre arrivée (odeurs, déchets, etc.) et la boîte de camionnette était-elle exempt de matériel ?</p>
+            <div class="answer-options" role="radiogroup" aria-label="Propreté intérieur et compartiment arrière">
+              <label class="choice">
+                <input type="radio" name="q6" value="Oui" checked />
+                <span>Oui</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="q6" value="Non" />
+                <span>Non</span>
+              </label>
+            </div>
+            <div class="comment-box hidden">
+              <label for="q6Comment">Commentaire et photo</label>
+              <textarea id="q6Comment" name="q6Comment" rows="2" placeholder="Détails et veuillez joindre une photo en pièce jointe..."></textarea>
+            </div>
+          </div>
+        </section>
+
+        <div class="field-group">
+          <label for="generalComment">Commentaire général</label>
+          <textarea id="generalComment" name="generalComment" rows="4" placeholder="Ajoutez des observations générales..."></textarea>
+        </div>
+
+        <div class="field-group photo-group">
+          <label>Photo</label>
+          <div class="photo-actions">
+            <input id="photoInput" type="file" accept="image/*" />
+            <button type="button" id="photoButton" class="secondary-button">Choisir une photo</button>
+          </div>
+          <p class="info-text">La photo est jointe manuellement dans le courriel, car les liens mailto ne peuvent pas envoyer automatiquement un fichier.</p>
+          <p id="photoName" class="photo-name">Aucune photo sélectionnée.</p>
+        </div>
+
+        <button type="submit" class="primary-button">Envoyer</button>
+      </form>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
