@@ -14,7 +14,8 @@ const toggleCommentField = (question) => {
   const commentBox = question.querySelector('.comment-box');
   if (!commentBox) return;
 
-  if (selectedAnswer && selectedAnswer.value === 'Non') {
+  const commentAnswer = question.dataset.commentAnswer || 'Non';
+  if (selectedAnswer && selectedAnswer.value === commentAnswer) {
     commentBox.classList.remove('hidden');
     commentBox.querySelector('textarea').setAttribute('required', 'required');
   } else {
@@ -62,9 +63,10 @@ form.addEventListener('submit', (event) => {
     const label = question.querySelector('.question-text').textContent.trim();
     const answer = question.querySelector('input[type="radio"]:checked').value;
     const comment = question.querySelector('textarea')?.value.trim() || '';
+    const commentAnswer = question.dataset.commentAnswer || 'Non';
     body.push(`${index + 1}. ${label}`);
     body.push(`Réponse : ${answer}`);
-    if (answer === 'Non' && comment) {
+    if (answer === commentAnswer && comment) {
       body.push(`Commentaire : ${comment}`);
     }
     body.push('');
